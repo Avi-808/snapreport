@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f6f7f4">
+  <meta name="description" content="Turn a spreadsheet into a clear summary and downloadable PDF report.">
+  <title>SnapReport — Your data, simply explained</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="#"><span class="brand-mark">S</span> snapreport</a><span class="privacy"><span>●</span> Your file stays on your device</span></header>
+  <main>
+    <section id="startScreen" class="start-screen">
+      <div class="intro"><span class="eyebrow">SPREADSHEET TO REPORT</span><h1>Your data,<br><em>simply explained.</em></h1><p>Add a spreadsheet. Get a clear summary, a chart, and a report you can save as PDF.</p></div>
+      <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Choose or drop an Excel or CSV file">
+        <div class="file-icon">↥</div><h2>Drop your spreadsheet here</h2><p>Or choose a file from your device</p><button id="browse" class="primary">Choose a file</button><span class="file-help">Excel or CSV · Up to 25 MB</span>
+      </div>
+      <div class="try-sample"><span>Want to see an example?</span><button id="sample">Open sample report <span>→</span></button></div>
+      <div id="error" class="error" role="alert" hidden></div>
+      <div class="steps"><div><span>1</span><b>Add a file</b></div><i></i><div><span>2</span><b>See the summary</b></div><i></i><div><span>3</span><b>Save as PDF</b></div></div>
+    </section>
+
+    <section id="reportScreen" class="report-screen" hidden>
+      <div class="report-actions"><button id="newFile" class="quiet">← Choose another file</button><button id="pdf" class="primary">↓ Save report as PDF</button></div>
+      <article id="report" class="report">
+        <header class="report-header"><div><span class="eyebrow">YOUR DATA REPORT</span><h1 id="reportTitle">Sales overview</h1><p id="reportMeta"></p></div><span class="report-brand">S&nbsp; SNAPREPORT</span></header>
+        <section class="plain-summary"><span class="summary-icon">✦</span><div><strong>In simple terms</strong><p id="summaryText"></p></div></section>
+        <section class="stats"><article><span>Rows</span><strong id="rowsStat">—</strong><small>in your file</small></article><article><span>Total</span><strong id="totalStat">—</strong><small id="measureName">numbers added together</small></article><article><span>Average</span><strong id="averageStat">—</strong><small>per row</small></article><article><span>Highest</span><strong id="highestStat">—</strong><small id="highestLabel">largest value</small></article></section>
+        <section class="visual"><div class="section-title"><div><h2>Your chart</h2><p id="chartExplain">A picture of your data.</p></div><label class="measure-picker" id="measurePickerWrap" hidden>Show <select id="measurePicker"></select></label></div><div class="chart-wrap"><div id="axisLabels" class="axis-labels"></div><div class="chart-main"><canvas id="chart" role="img" aria-label="Chart of uploaded data"></canvas><div id="periodLabels" class="period-labels"></div></div></div></section>
+        <section class="preview"><div class="section-title"><div><h2>Rows from your file</h2><p>A quick look at the first few rows.</p></div><span id="previewCount"></span></div><div class="table-wrap" id="tableWrap"></div></section>
+        <footer class="report-footer"><span>Made with SnapReport</span><span>Your file was read on this device and was not uploaded.</span></footer>
+      </article>
+      <p class="pdf-help">Choose <b>Save as PDF</b> in the print window to download your report.</p>
+    </section>
+    <footer class="site-footer">No account needed <span>·</span> Your file stays private</footer>
+  </main>
+  <input id="fileInput" type="file" accept=".csv,.tsv,.xlsx,.xls,.xlsm,.ods" hidden>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
